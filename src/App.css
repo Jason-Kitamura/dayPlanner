@@ -1,38 +1,65 @@
-.App {
+.container {
+  max-width: none;
+  z-index: 10;
+  opacity: 1;
+  display: block;
+  margin: auto;
+  width: 90%;
+
+}
+
+#header {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  border-bottom: solid thin white;
+  padding-bottom: 15px;
+  margin: 10px 20px 0 20px;
+  z-index: 10;
+  position: relative;
+  opacity: 0.8
+
 }
 
-.App-link {
-  color: #61dafb;
+#background {
+  background-image: url('./assets/lights.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+  height : 100%;
+  width : 100%;
+  opacity: 0.7;
+  z-index: 9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#weatherBar {
+  background-color: white;
+  z-index: 10;
+  position: relative;
+  opacity: 0.8;
+  display: block;
+  margin: auto;
+  width: 80%;
+  height : 100px
+}
+
+#planner {
+  background-color: white;
+  z-index: 10;
+  position: relative;
+  opacity: 0.8;
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  width: 80%;
+  height : 100px
+
+}
+#todo {
+  background-color: white;
+  position: relative;
+  z-index: 10;
+  opacity: 0.8;
+  width: 80%;
+ 
 }
