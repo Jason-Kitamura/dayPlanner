@@ -10,13 +10,24 @@ function Weather() {
     const [today, setToday] = useState([])
     const [forecast, setForecast] = useState([]);
 
+    const days = [ 'Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    const fullDays = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satday'];
+
+    
+
+
     function displayWeather(oneDay, fiveDay){
         console.log('displaying weather', oneDay)
+
+        let myDate = new Date(oneDay[0].dt_txt),
+            day = myDate.getDay()
+            console.log('day', day)
 
         let obj = {
             temp : Math.round(Number(oneDay[0].main.temp_max)-273.15),
             weather : oneDay[0].weather[0].description,
-            icon : oneDay[0].weather[0].icon
+            icon : oneDay[0].weather[0].icon,
+            day : fullDays[day],
         }
 
         setToday( obj )
@@ -26,10 +37,15 @@ function Weather() {
                 let tempK = Number(e.main.temp_max);
                 let tempC = tempK - 273.15
 
+                let myDate = new Date(e.dt_txt),
+                    day = myDate.getDay()
+                    console.log('day', day)
+
                 let obj = {
                     temp : Math.round(tempC),
                     weather : e.weather[0].description,
-                    icon : e.weather[0].icon
+                    icon : e.weather[0].icon,
+                    day : days[day]
                 }
                 
                 setForecast(forecast => ([...forecast, obj]));
@@ -47,7 +63,17 @@ function Weather() {
               setIsLoaded(true);
                 
               const oneDay = [ result.list[0] ];
-              const fiveDay = [ result.list[1], result.list[2], result.list[3], result.list[4], ]
+
+            //   console.log('character test', result.list[0].dt_txt.charAt(11))
+            //   console.log('character test', result.list[0].dt_txt.charAt(12))
+            //   const forecastArray = result.list
+            //   console.log('forecastArray', typeof forecastArray)
+              const fiveDay = result.list.filter(
+                  day => {
+                     return day.dt_txt.charAt(11) == '1' && day.dt_txt.charAt(12) == '5';
+                  }
+              )
+            //   console.log('test forcast', testForcast)
               
               console.log('five day', fiveDay)
 
@@ -68,38 +94,33 @@ function Weather() {
       } else {
         return (
             <div id="weatherBar">
-                    weather
+                    
                     <div class='row'>
-                        <div class='col-2 weatherCell'>
-                            <img src={"http://openweathermap.org/img/w/02d.png"} ></img>
-                            <p>{today.temp}°C</p>
-                            <p>{today.weather}</p>
+                        <div class='col-6 todayCell'>
+                            <div class='row'>
+                                <div class='col-6'>
+                                    <img  src={"http://openweathermap.org/img/w/02d.png"} ></img>
+                                </div>
+                                <div class='col-6'>
+                                    <p id='todayDay'>{today.day}</p>
+                                    <p id='todayTemp'>{today.temp}°</p>
+                                    <p id='todayDescription'>{today.weather}</p>
+                                </div>
+                            </div>
+                            
                         </div>
                         {forecast.map(
                             e => (
-                                <div class='col-2 weatherCell'>
-                                        <p>{e.temp}</p>
-                                        <img src={`http://openweathermap.org/img/w/${e.icon}.png`} ></img>
+                                <div class='col-1 weatherCell'>
+                                    <p>{e.day}</p>
+                                    <img src={`http://openweathermap.org/img/w/${e.icon}.png`} ></img>
+                                    <p>{e.temp}°</p>
                                 </div>
                             )
                         )}
                         
                     </div>
-                {/* //    {forecast.map(
-                //         e => (
-                //             <div class='row'>
-                //                 <div class='col'> weatherCell
-                //                     <p>{e.temp}</p>
-                //                 </div>
-                //                 <div class='col'> weatherCell
-                //                     <p>{e.weather}</p>
-                //                 </div>
-                //                 <div class='col'> weatherCell
-                                    
-                //                 </div>
-                //             </div>
-                //         )
-                //    )} */}
+        
             </div>
         )
       }
