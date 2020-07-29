@@ -5,6 +5,9 @@
   display: block;
   margin: auto;
   width: 90%;
+  position: relative;
+  z-index: 10;
+
 
 }
 
@@ -16,12 +19,13 @@
   margin: 10px 20px 0 20px;
   z-index: 10;
   position: relative;
-  opacity: 0.8
+  opacity: 0.8;
+  margin: 0;
 
 }
 
 #background {
-  background-image: url('./assets/lights.jpg');
+  background-image: url('./assets/northernLights1.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -46,56 +50,88 @@
   color: white;
   font-size: xx-large ;
   width: 80%;
+  min-width: fit-content;
 }
 
 .col-6 {
   padding: 0;
 }
 
+
+
 .todayCell img {
-  height: 200px;
-  width: 200px;
+  width: 125px;
+  width: 80%;
+  height: auto;
   /* display: block;
   margin: auto; */
   float: right;
+  padding-top: 35px;
+}
+
+#todayCity {
+  text-align: center;
+  margin-bottom: 10px;
+  /* font-size: 4vw ; */
+}
+
+#todayInfo {
+  width: fit-content;
+  /* text-align: center; */
+  padding-left: 5%;
 }
 
 #todayDay {
-  font-size: 20px;
+  padding-top: 0px;
+  font-size: 2vw;
   margin: 0;
 }
 
 #todayTemp {
   font-weight: 400;
-  font-size: 75px;
-
-
+  font-size: 5vw;
   margin: 0;
+  padding: 0;
 }
 
 
 #todayDescription {
-  font-size: 20px;
+  font-size: 1.5vw;
 }
 
 .weatherCell {
-  margin : 5px;
+  margin : 2px;
   background: rgba(255, 255, 255, 0.3);
   position: relative;
   height: fit-content;
   border-radius: 5px;
   color: white;
   font-size: 100%;
+  padding: 0;
 
 }
 
 .weatherCell p {
   text-align: center;
+  margin-bottom: 5px;
+  font-size: 2vw;
 
 }
 
+#weatherIcon {
+  height: 100px;
+}
+
+.weatherCell img {
+  /* width: 80%; */
+  height: 30px;
+  
+  display: block;
+  margin: auto;
+}
+
 #planner {
-  background-color: white;
+  /* background-color: white; */
   z-index: 10;
   position: relative;
   opacity: 0.8;
@@ -114,3 +150,64 @@
   width: 80%;
  
 }
+
+@media only screen and (min-width : 1200px) {
+  #todayDescription {
+    font-size: 20px;
+  }
+  
+  #todayDay {
+    padding-top: 0px;
+    font-size: 25px;
+    margin: 0;
+  }
+  
+  #todayTemp {
+    font-weight: 400;
+    font-size: 75px;
+    margin: 0;
+    padding: 0;
+  }
+  
+}
+
+@media only screen and (min-width : 768px) {
+    #forecastCells {
+      padding-top: 50px;
+    }
+    .weatherCell p {
+      font-size: 15px;
+    }
+}
+
+@media only screen and (max-width : 768px) {
+  .todayCell {
+    display: block;
+    margin: auto;
+  }
+  .todayCell img {
+    padding : 0;
+    width: 70%;
+  }
+  #forecastCells {
+    padding-left: 20px;
+  }
+  #todayDescription {
+    font-size: 10px;
+  }
+  
+  #todayDay {
+    padding-top: 0px;
+    font-size: 10px;
+    margin: 0;
+  }
+  
+  #todayTemp {
+    font-weight: 400;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+  }
+}
+/* @media only screen and (max-width : 7)
+ */

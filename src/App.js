@@ -15,10 +15,10 @@ function App() {
         <Background/>
         <header>
             <h1 id='header'>Day Planner</h1>
-          </header>\
+          </header>
         <div class='container'>
           <div class='row'>
-            <div class='col-8'>
+            <div class='col-md-8'>
               <div class='row'>
                 <Weather/>
               </div>
@@ -26,7 +26,7 @@ function App() {
                 <Planner/>
               </div>
             </div>
-            <div class='col-4'>
+            <div class='col-md-4'>
               <Todo/>
             </div>
           </div>
