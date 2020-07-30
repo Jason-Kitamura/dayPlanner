@@ -61,7 +61,7 @@
 
 .todayCell img {
   width: 125px;
-  width: 80%;
+  width: 60%;
   height: auto;
   /* display: block;
   margin: auto; */
@@ -142,14 +142,7 @@
   height : 100px
 
 }
-#todo {
-  background-color: white;
-  position: relative;
-  z-index: 10;
-  opacity: 0.8;
-  width: 80%;
- 
-}
+
 
 @media only screen and (min-width : 1200px) {
   #todayDescription {
