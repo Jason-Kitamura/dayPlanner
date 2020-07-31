@@ -1,20 +1,24 @@
 import React, {} from 'react';
 import '../todo.css'
 
-function Todo() {
+function Todo(props) {
 
     function addSection() {
-        console.log('add section')
+        console.log('add section');
+        props.showModal();
+       
     }
 
     return (
         <div id="todo">
+
+            
             
             <div>
-                <p id='newSection' onClick={e => addSection()}>Add goal +</p>
+                <p id='newSection' onClick={e => addSection()} >Add goal +</p>
             </div>
             <br/>
-            <div class='section'>
+            {/* <div class='section'>
                 <h4 class='sectionTitle'>Work Goals<i class="fa fa-plus newTask" aria-hidden="true"></i></h4>
                 <div class='task'>
                 <p>Work on App
@@ -81,7 +85,7 @@ function Todo() {
                         </div>
                     </p>                
                 </div>
-            </div>             
+            </div>              */}
         </div>
     )
 }
