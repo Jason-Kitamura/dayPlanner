@@ -1,0 +1,86 @@
+
+  #goalForm {
+    display: block;
+    margin : auto;
+    margin-top: 30vh;
+    /* left: 50%;
+    top: 25%; */
+    position: relative;
+    z-index: 9;
+    width: 40vw;
+    height: fit-content;
+    background-color: rgba(212, 212, 212, 0.109);
+    /* border-radius: 5px; */
+    padding: 30px;
+    color: white;
+   
+    
+  }
+  #goalForm input {
+    /* border-radius: 5px; */
+    border: 3px solid rgba(177, 177, 177, 0.548);
+    background-color: rgba(51, 51, 51, 0.287) ;
+    color: white;
+  }
+  #goalForm input:focus {
+    /* border-radius: 5px; */
+    /* border: 3px solid rgba(214, 214, 214, 0.548); */
+    background-color: rgba(255, 255, 255, 0.801) ;
+    border: 3px solid rgba(255, 255, 255, 0.226);
+    outline: none;
+    color: black;
+    
+  }
+
+  #titleSection {
+      padding-bottom: 10px;
+    border-bottom: solid thin rgb(180, 173, 173)
+  }
+  #closeBtn {
+    position: absolute;
+    top: 10px;
+    right : 10px;
+    z-index: 8;
+    cursor: pointer;
+  }
+  #addTask {
+    float: right;
+    z-index: 8;
+    cursor: pointer;
+    padding: 5px;
+    /* border: thin solid; */
+    /* border-radius: 5px; */
+    margin: 0px;
+    background-color: rgba(146, 146, 146, 0.698);
+  }
+  .removeTask {
+    float: right;
+    z-index: 8;
+    cursor: pointer;
+    padding: 5px;
+    
+    margin: 0px;
+  }
+  #acceptBtn {
+    /* border-radius: 10px; */
+    background-color: rgba(74, 82, 97, 0.733);
+    color: white;
+    display: block;
+    margin-right: 20px;
+    margin-top: 30px;
+    padding: 2px, 5px, 2px, 5px;
+  }
+  .taskInput {
+    border-bottom: solid thin rgb(180, 173, 173);
+    padding: 5px;
+    padding-left: 0;
+    
+  }
+
+  #backDrop{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(32, 32, 32, 0.609);
+    position: fixed;
+    z-index: 11;
+  }
