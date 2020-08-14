@@ -1,91 +1,45 @@
-import React, {} from 'react';
+import React, { useState } from 'react';
 import '../todo.css'
 
 function Todo(props) {
 
+ 
+
+
     function addSection() {
         console.log('add section');
         props.showModal();
-       
     }
-
-    return (
-        <div id="todo">
-
+    
+    const renderTodo = props.sectionList.map((section, i) => (
+        <div class='section' id={section.id}>
+            <h4 class='sectionTitle'>{section.title}<i class="fa fa-plus newTask" aria-hidden="true"></i></h4>
             
-            
-            <div>
-                <p id='newSection' onClick={e => addSection()} >Add goal +</p>
-            </div>
-            <br/>
-            {/* <div class='section'>
-                <h4 class='sectionTitle'>Work Goals<i class="fa fa-plus newTask" aria-hidden="true"></i></h4>
+            {section.tasks.map( (task, i) => (
                 <div class='task'>
-                <p>Work on App
-                        <div class='checkbox'>
-                            <input type='checkbox' ></input>
-                            <i class="fa fa-trash " aria-hidden="true"></i>
-                        </div>
-                    </p>                </div>
-                <div class='task'>
-                <p>Interview Prep
-                        <div class='checkbox'>
-                            <input type='checkbox' ></input>
-                            <i class="fa fa-trash " aria-hidden="true"></i>
-                        </div>
-                    </p>                </div>
-                <div class='task'>
-                <p>Clean PC
-                        <div class='checkbox'>
-                            <input type='checkbox' ></input>
-                            <i class="fa fa-trash " aria-hidden="true"></i>
-                        </div>
-                    </p>                </div>
-            </div>
-            <div class='section' id='section2'>
-                <h4 class='sectionTitle'>Personal Goals<i class="fa fa-plus newTask" aria-hidden="true"></i></h4>
-                <div class='task'>
-                    <p>Excercise
-                        <div class='checkbox'>
-                            <input type='checkbox' ></input>
-                            <i class="fa fa-trash " aria-hidden="true"></i>
-                        </div>
-                    </p>
-                </div>
-                <div class='task'>
-                <p>No carbs
-                        <div class='checkbox'>
-                            <input type='checkbox' ></input>
-                            <i class="fa fa-trash " aria-hidden="true"></i>
-                        </div>
-                    </p>                </div>
-             
-            </div> 
-            <div class='section' id='section3'>
-                <h4 class='sectionTitle'>Summer Goals<i class="fa fa-plus newTask" aria-hidden="true"></i></h4>
-                <div class='task'>
-                <p>Go to the beach
-                        <div class='checkbox'>
-                            <input type='checkbox' ></input>
-                            <i class="fa fa-trash " aria-hidden="true"></i>
-                        </div>
-                    </p>                </div>
-                <div class='task'>
-                <p>Get a Job
-                        <div class='checkbox'>
-                            <input type='checkbox' ></input>
-                            <i class="fa fa-trash " aria-hidden="true"></i>
-                        </div>
-                    </p>                </div>
-                <div class='task'>
-                <p>Learn Photoshop
+                    <p>{task.text}
                         <div class='checkbox'>
                             <input type='checkbox' ></input>
                             <i class="fa fa-trash " aria-hidden="true"></i>
                         </div>
                     </p>                
                 </div>
-            </div>              */}
+            ))}
+        </div>
+    ))
+    
+
+    return (
+        <div id="todo">
+
+            <div>
+                <p id='newSection' onClick={e => addSection()} >Add goal +</p>
+                
+            </div>
+            <br/>
+            {/* {props.list} */}
+            {renderTodo}
+            
         </div>
     )
 }

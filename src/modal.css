@@ -9,7 +9,7 @@
     z-index: 9;
     width: 40vw;
     height: fit-content;
-    background-color: rgba(212, 212, 212, 0.109);
+    background-color: rgba(148, 148, 148, 0.582);
     /* border-radius: 5px; */
     padding: 30px;
     color: white;
@@ -51,7 +51,7 @@
     /* border: thin solid; */
     /* border-radius: 5px; */
     margin: 0px;
-    background-color: rgba(146, 146, 146, 0.698);
+    /* background-color: rgba(146, 146, 146, 0.698); */
   }
   .removeTask {
     float: right;
@@ -66,7 +66,7 @@
     background-color: rgba(74, 82, 97, 0.733);
     color: white;
     display: block;
-    margin-right: 20px;
+ 
     margin-top: 30px;
     padding: 2px, 5px, 2px, 5px;
   }
@@ -80,7 +80,7 @@
   #backDrop{
     height: 100vh;
     width: 100%;
-    background-color: rgba(32, 32, 32, 0.609);
+    background-color: rgba(39, 39, 39, 0.733);
     position: fixed;
     z-index: 11;
   }
