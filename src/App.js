@@ -71,10 +71,14 @@ function App() {
   }
 
   function addNewSection(){
+
+    const color = [Math.floor(Math.random() * 4)]
+
     const obj = {
       id: j,
       title: newTitle,
       tasks: newTasks,
+      color: color
     };
     setSectionList([
       ...sectionList, obj
