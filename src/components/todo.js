@@ -51,10 +51,12 @@ function Todo(props) {
         console.log('add section');
         props.showModal();
     }
+
+    
     
     const renderTodo = props.sectionList.map((section, i) => (
         <div class='section' id={section.id} style={colorArray[section.color]} >
-            <h4 class='sectionTitle'>{section.title}<i class="fa fa-plus newTask" aria-hidden="true"></i></h4>
+            <h4 class='sectionTitle'>{section.title}<i class="fa fa-edit newTask" aria-hidden="true" onClick={e => props.editSection(section.id)}></i></h4>
             
             {section.tasks.map( (task, i) => (
                 <div class='task'>

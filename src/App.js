@@ -8,23 +8,32 @@ import Weather from './components/weather';
 import Planner from './components/planner';
 import Todo from './components/todo';
 import Modal from './components/modal';
+import EditModal from './components/editModal'
 
 toast.configure();
 
 function App() {
 
-  const [modalState, setModalState] = useState( { visibility : 'hidden'} )
+  const [modalState, setModalState] = useState( { visibility : 'hidden'} );
+  const [ editModalState, setEditModalState ] = useState( {visibility : 'hidden'});
 
-  const [ taskList, setTaskList] = useState([])
-  const [ newTitle, setNewTitle ] = useState('')
+  const [ taskList, setTaskList] = useState([]);
+  const [ newTitle, setNewTitle ] = useState('');
   const [ newTasks, setNewTasks ] = useState([]);
   const [ sectionList, setSectionList ]= useState([]);
 
-  const [ i , setI ] = useState(1)
-  const [ j , setJ ] = useState(1)
+  const [ editSectionState, setEditSectionState ] = useState();
+
+  const [ i , setI ] = useState(1);
+  const [ j , setJ ] = useState(1);
 
   function showModal () {
     setModalState({
+      visiblity : 'visible'
+    })
+  }
+  function showEditModal () {
+    setEditModalState({
       visiblity : 'visible'
     })
   }
@@ -37,6 +46,12 @@ function App() {
     setTaskList([])
     setNewTitle('')
     setNewTasks([]);
+  }
+
+  function hideEditModal () {
+    setEditModalState( {
+      visibility : 'hidden'
+    });
   }
 
   function removeTask(i) {
@@ -95,6 +110,19 @@ function App() {
           ...newTasks, obj
       ])
   }
+  //edit modal functions
+  function editSection( id ){
+    console.log('editing section with id...', id, 'section list ...', sectionList);
+    showEditModal();
+
+    const section = sectionList.filter( 
+      e => e.id === id
+    )
+    console.log('returning section...', section)
+
+    setEditSectionState( section[0] );
+    console.log('editSectionState', editSectionState)
+}
 
   
   return (
@@ -103,6 +131,7 @@ function App() {
 
         <Background/>
         <Modal modalState={modalState} hideModal={hideModal} saveSection={saveSection} removeTask={removeTask} addNewTask={addNewTask} setTask={setTask} setNewTitle={setNewTitle} taskList={taskList}/>
+        <EditModal hideEditModal={hideEditModal} editModalState={editModalState} editSectionState={editSectionState} setEditSectionState={setEditSectionState}/>
         <header>
             <h1 id='header'>Day Planner</h1>
           </header>
@@ -117,7 +146,7 @@ function App() {
               </div>
             </div>
             <div class='col-md-4'>
-              <Todo showModal={showModal} newTitle={newTitle} newTasks={newTasks} taskList={taskList}  sectionList={sectionList} />
+              <Todo showModal={showModal} newTitle={newTitle} newTasks={newTasks} taskList={taskList}  sectionList={sectionList} showEditModal={showEditModal} editSection={editSection}/>
             </div>
           </div>
         </div>
