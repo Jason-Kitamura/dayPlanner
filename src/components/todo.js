@@ -46,53 +46,14 @@ function Todo(props) {
         }
     ];
 
-
     function addSection() {
         console.log('add section');
         props.showModal();
     }
-    // function handleCheckBox( taskId, sectionId, checked ) {
-    //     const newChecked = !checked;
-    //     console.log('checked', newChecked)
-    //     const newSectionArray = props.sectionList.filter( section =>
-    //             section.id === sectionId
-    //         );
-    //     let newSection = newSectionArray[0];
-    //     const newTaskArray = newSection.tasks.map( e => {
-    //         if( e.id === taskId ){
-    //             return Object.assign( {}, e, { style : { textDecoration : 'line-through'} })
-    //         }
-    //     });
-     
-    //     const newSectionList = props.sectionList.map( e => {
-    //         if( e.id === sectionId ){
-    //             return Object.assign( {}, e, { tasks : newTaskArray })
-    //         }
-    //     });
-    //     props.setSectionList( newSectionList );
 
-    //         console.log('newSection', newSection)
-    // };
-    // function checkStyle( task){
-    //     // event.preventDefault()
-    //     if ( task !== undefined ){
-    //         console.log(' check task', task)
-    //         if ( task.checked === true ){
-    //             return (
-    //                 {textDecoration : 'line-through'}
-    //             )
-                
-     
-    //         }
-    //     }
-   
-    // }
-
-    
-    
     const renderTodo = props.sectionList.map((section, i) => (
         <div class='section' id={section.id} style={colorArray[section.color]} >
-            <h4 class='sectionTitle'>{section.title}<i class="fa fa-edit newTask" aria-hidden="true" onClick={e => props.editSection(section.id)}></i></h4>
+            <h4 class='sectionTitle'>{section.title}<i class="fa fa-edit fa-sm newTask" aria-hidden="true" onClick={e => props.editSection(section.id)}></i></h4>
             
             {section.tasks.map( (task, i) => (
                 <div class='task'>
@@ -109,23 +70,13 @@ function Todo(props) {
 
     return (
         <div id="todo">
-
             <div>
-                <p id='newSection' onClick={e => addSection()} >Add goal +</p>
-                
+                <p id='newSection' onClick={e => addSection()} >Add goal +</p> 
             </div>
             <br/>
-            {/* {props.list} */}
-            {renderTodo}
-            
+            {renderTodo} 
         </div>
     )
 }
 
 export default Todo;
-
-//add section
-//card
-    //add button
-    //task with check box
-    //delete box
