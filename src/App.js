@@ -33,6 +33,7 @@ function App() {
     })
   }
   function showEditModal () {
+    console.log('showing modal visible')
     setEditModalState({
       visiblity : 'visible'
     })
@@ -103,8 +104,8 @@ function App() {
 
   function setTask( text, i ){
       const obj = {
-          text: text,
-          id: i
+          id: i,
+          text: text,          
       }
       setNewTasks([
           ...newTasks, obj
@@ -113,6 +114,7 @@ function App() {
   //edit modal functions
   function editSection( id ){
     console.log('editing section with id...', id, 'section list ...', sectionList);
+    console.log('modal State', modalState);
     showEditModal();
 
     const section = sectionList.filter( 
@@ -131,7 +133,7 @@ function App() {
 
         <Background/>
         <Modal modalState={modalState} hideModal={hideModal} saveSection={saveSection} removeTask={removeTask} addNewTask={addNewTask} setTask={setTask} setNewTitle={setNewTitle} taskList={taskList}/>
-        <EditModal hideEditModal={hideEditModal} editModalState={editModalState} editSectionState={editSectionState} setEditSectionState={setEditSectionState}/>
+        <EditModal hideEditModal={hideEditModal} editModalState={editModalState} sectionList={sectionList} setSectionList={setSectionList} editSectionState={editSectionState} setEditSectionState={setEditSectionState} i={i} setI={setI}/>
         <header>
             <h1 id='header'>Day Planner</h1>
           </header>
@@ -146,7 +148,7 @@ function App() {
               </div>
             </div>
             <div class='col-md-4'>
-              <Todo showModal={showModal} newTitle={newTitle} newTasks={newTasks} taskList={taskList}  sectionList={sectionList} showEditModal={showEditModal} editSection={editSection}/>
+              <Todo showModal={showModal} newTitle={newTitle} newTasks={newTasks} taskList={taskList}  sectionList={sectionList} setSectionList={setSectionList} showEditModal={showEditModal} editSection={editSection} setEditModalState={setEditModalState}/>
             </div>
           </div>
         </div>

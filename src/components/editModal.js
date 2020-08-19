@@ -3,6 +3,8 @@ import '../modal.css'
 
 function EditModal (props){
 
+    const [ taskList, setTaskList] = useState([]);
+
     function updateTitle( text){
         let oldSection = props.editSectionState;
             props.setEditSectionState( old => ({
@@ -11,19 +13,87 @@ function EditModal (props){
             }))
             console.log(props.editSectionState.title)
     }
-    function updateSection(){
+    function updateTask(id, text){
+        let oldSection = props.editSectionState;
+        let newTaskArray =  oldSection.tasks.map( e => {
+            if ( e.id === id ) {
+                return Object.assign({}, e, {text : text})
+            }
+            return e;
+        })
+            oldSection.tasks = newTaskArray;
+            console.log('new task array', oldSection.tasks);
+            props.setEditSectionState( oldSection );
+    }
+    function newTask( text, id ){
+        //scan for task with id in editSectionState
+        let newTaskArray =  taskList.map( e => {
+            console.log('text', taskList, 'id', id, 'element id', e.id)
+
+            if ( e.id === id ) {
+
+                return Object.assign({}, e, {text : text});
+                
+            }
+            return e;
+        })
+        setTaskList( newTaskArray );
+    }
+    function addNewTask(){   
+        const taskArray = taskList;
+        const newTask= {
+            id : props.i,
+            text : '',
+        }
+        taskArray.push( newTask );
+
+        setTaskList( taskArray );
         
+        props.setI( props.i + 1)
+    }
+    function removeTask( id ){
+        console.log('removing task...', id)
+        const newTaskList = taskList.filter( task => 
+            task.id !== id
+        );
+        setTaskList( newTaskList );
+        console.log('new task list', taskList)
+        const newSectionTasks = props.editSectionState.tasks.filter( task => 
+            task.id !== id
+        )
+        const newSectionState = props.editSectionState;
+        newSectionState.tasks = newSectionTasks;
+        props.setEditSectionState( newSectionState );
+        }
+       
+    
+        
+
+    
+    function updateSection( id ){
+        const finalTaskArray = props.editSectionState.tasks.concat( taskList );
+        console.log('final task array', finalTaskArray);
+        const newSectionList = props.sectionList.map( e => {
+            if( e.id === id ){
+                return Object.assign({}, e, {title :props.editSectionState.title, tasks: finalTaskArray})
+            }
+            return e;
+        });
+        props.setSectionList( newSectionList );
+        props.hideEditModal();
+        props.setEditSectionState({});
+        setTaskList([])
     }
   
     try{
 
         const renderTasks = props.editSectionState.tasks.map((task, i) => (
             <div class='taskInput' key={i}>
-              <i class='fa fa-times removeTask'  aria-hidden='true'  ></i>
+              <i class='fa fa-times removeTask'  aria-hidden='true' onClick={ e => removeTask( task.id )} ></i>
               <h5>
                   New Task
               </h5>
-              <input value={task.text}>
+              <input placeholder={task.text} onChange={ e => updateTask(task.id, e.target.value)}>
 
               </input>
           </div>
@@ -37,15 +107,26 @@ function EditModal (props){
                             Section Title
                         </h1>
                         <i class='fa fa-times fa-lg' id='closeBtn' aria-hidden='true' onClick={e => props.hideEditModal()}></i>
-                        <i class='fa fa-plus fa-2x' id='addTask' aria-hidden='true' ></i>
+                        <i class='fa fa-plus fa-2x' id='addTask' aria-hidden='true' onClick={e => addNewTask()} ></i>
                         <input id='newTitle' value={props.editSectionState.title} onChange={e => updateTitle(e.target.value)}>
                         
                         </input>
                      </div>
                      {renderTasks}
+                     {taskList.map( el => (
+                        <div class='taskInput' key={el.id}>
+                            <i class='fa fa-times removeTask'  aria-hidden='true' onClick={ e => removeTask( el.id )} ></i>
+                            <h5>
+                                New Task
+                            </h5>
+                            <input onChange={e => newTask( e.target.value, el.id)}>
+            
+                            </input>
+                        </div>
+                     ))}
           
                     
-                    <button id='acceptBtn' onClick={updateSection()}>
+                    <button id='acceptBtn' onClick={e => updateSection(props.editSectionState.id)}>
                         Done
                     </button>
                 </div>
@@ -53,7 +134,7 @@ function EditModal (props){
                
         )} catch {
             return(
-                ''
+                <div></div>
             )
         }
     }
