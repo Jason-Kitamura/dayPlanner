@@ -84,3 +84,10 @@
     position: fixed;
     z-index: 11;
   }
+  #deleteBtn {
+    float: right;
+    position: relative;
+  }
+  #deleteBtn:hover {
+    cursor: pointer;
+  }

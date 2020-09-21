@@ -11,6 +11,8 @@ function Modal (props){
     const [ taskList, setTaskList] = useState([]);
     const [ newTitle, setNewTitle ] = useState('');
     const [ j , setJ ] = useState(1);
+    const [ colorArray, setColorArray ] = useState([0,1,2,3,4]);
+
 
     function addNewTask(){
         const taskArray = taskList;
@@ -36,7 +38,17 @@ function Modal (props){
     }
 
     function addNewSection(){
-        const color = [Math.floor(Math.random() * 4)];
+        const colorNumber = [Math.floor(Math.random() * colorArray.length)];
+        const newColor = colorArray[colorNumber];
+        const newColorArray = colorArray.filter( color => {
+            return color !== newColor;
+        });
+        
+        if (colorArray && colorArray.length ){
+            setColorArray( newColorArray );
+        } else {
+            setColorArray([0,1,2,3,4])
+        }
         const cleanTaskList = taskList.filter( task => {
             return task.text !== ''
         })
@@ -44,7 +56,7 @@ function Modal (props){
           id: j,
           title: newTitle,
           tasks: cleanTaskList,
-          color: color
+          color: newColor
         };
         //add new section to the section array
         props.setSectionList([

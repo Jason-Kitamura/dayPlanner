@@ -61,6 +61,7 @@ function EditModal (props){
     }
        
     function updateSection( id ){
+        console.log('updating section with id...', id);
         const finalTaskArray = props.editSectionState.tasks.concat( taskList );
         const cleanTaskArray = finalTaskArray.filter( task => {
             return task.text !== ''
@@ -75,6 +76,17 @@ function EditModal (props){
         props.hideEditModal();
         props.setEditSectionState({});
         setTaskList([])
+    }
+    function deleteSection( id ){
+        console.log('deleting section with id...', id);
+        console.log('sectionList', props.sectionList);
+        const newSectionList = props.sectionList.filter( section => {
+            return section.id !== id;
+        })
+        console.log('new section list', newSectionList);
+        props.setSectionList( newSectionList );
+        props.hideEditModal();
+        props.setEditSectionState({});
     }
   
     try{
@@ -96,6 +108,7 @@ function EditModal (props){
                     <div id='titleSection'>
                         <h1>
                             Section Title
+                            {/* <i id='deleteBtn' class='fa fa-trash'></i> */}
                         </h1>
                         <i class='fa fa-times fa-lg' id='closeBtn' aria-hidden='true' onClick={e => props.hideEditModal()}></i>
                         <i class='fa fa-plus fa-2x' id='addTask' aria-hidden='true' onClick={e => addNewTask()} ></i>
@@ -118,6 +131,8 @@ function EditModal (props){
                     <button id='acceptBtn' onClick={e => updateSection(props.editSectionState.id)}>
                         Done
                     </button>
+                    <p id='deleteBtn' onClick={e => deleteSection(props.editSectionState.id)}>delete</p>
+                    
                 </div>
             </div>  
         )
